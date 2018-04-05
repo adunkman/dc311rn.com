@@ -1,19 +1,21 @@
-const retrieveServiceRequest = (serviceRequestId) => {
-  const endpoint = "https://maps2.dcgis.dc.gov/dcgis/rest/services/DCGIS_DATA/ServiceRequests/MapServer/9/query"
-  const params = {
-    where: `UPPER(SERVICEREQUESTID) like '%${serviceRequestId}%'`,
+var retrieveServiceRequest = function (serviceRequestId) {
+  var endpoint = "https://maps2.dcgis.dc.gov/dcgis/rest/services/DCGIS_DATA/ServiceRequests/MapServer/9/query"
+  var params = {
+    where: "UPPER(SERVICEREQUESTID) like '%" + serviceRequestId + "%'",
     outFields: "*",
     outSR: 4326,
     f: "json"
   }
-  const qs = Object
+  var qs = Object
     .keys(params)
-    .map((key) => `${encodeURIComponent(key)}=${encodeURIComponent(params[key])}`)
+    .map(function (key) { return encodeURIComponent(key) + "=" + encodeURIComponent(params[key]) })
     .join("&")
 
-  return fetch(`${endpoint}?${qs}`)
-    .then((response) => response.json())
-    .then(({features}) => {
+  return fetch(endpoint + "?" + qs)
+    .then(function (response) { return response.json() })
+    .then(function (body) {
+      var features = body.features
+
       if (features.length === 0) {
         throw new Error("Service request not found.");
       }
@@ -26,11 +28,11 @@ const retrieveServiceRequest = (serviceRequestId) => {
     })
 };
 
-const serviceRequestNumber = new URL(window.location.href).searchParams.get("serviceRequestNumber");
+var serviceRequestNumber = new URL(window.location.href).searchParams.get("serviceRequestNumber");
 
 if (serviceRequestNumber) {
   retrieveServiceRequest(serviceRequestNumber)
-    .then((serviceRequest) => {
+    .then(function (serviceRequest) {
       document.querySelector("pre").innerText = JSON.stringify(serviceRequest, null, 2)
     })
 }

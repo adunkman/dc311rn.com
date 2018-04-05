@@ -1,1 +1,14 @@
-<h1>It works!</h1>
+---
+layout: base
+append_class_to_html: home-page
+summary: Quickly check the status of a DC 311 service request by number.
+---
+
+{% asset all.js %}
+
+<form>
+  <input type="text" name="serviceRequestNumber" placeholder="18-00138559">
+  <button>Search</button>
+</form>
+
+<pre></pre>

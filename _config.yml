@@ -19,7 +19,7 @@ exclude:
 # happiness
 webrick:
   headers:
-    Content-Security-Policy: "default-src 'none'; img-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'"
+    Content-Security-Policy: "default-src 'none'; img-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; connect-src https://maps2.dcgis.dc.gov"
     X-Content-Type-Options: "nosniff"
     X-Frame-Options: "DENY"
     X-XSS-Protection: "1; mode=block"

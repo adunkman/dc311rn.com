@@ -27,12 +27,18 @@ if (serviceRequestNumber) {
         <p>Reported to ${r.organization()}, ${r.department()} for ${r.type()}.</p>
         <p>
           ${r.hasAddress() ? r.addressLines().join("<br>") + "<br>" : ""}
-          <img src="https://maps.googleapis.com/maps/api/staticmap?${new URLSearchParams({
-            center: r.coordinates(),
-            markers: r.coordinates(),
-            size: "600x300",
-            zoom: "13"
-          })}">
+          <a href="https://www.google.com/maps/search/?${new URLSearchParams({
+            api: 1,
+            query: r.coordinates()
+          })}" target="_blank" rel="noopener noreferrer">
+            <img src="https://maps.googleapis.com/maps/api/staticmap?${new URLSearchParams({
+              center: r.coordinates(),
+              markers: r.coordinates(),
+              size: "600x300",
+              zoom: "15"
+            })}">
+          </a>
+        </p>
       `
     })
 }

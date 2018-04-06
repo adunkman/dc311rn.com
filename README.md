@@ -4,11 +4,10 @@
 
 To run this application locally, you’ll need to install the dependencies and then launch the web server which automatically recompiles the site when changes are made.
 
-1. `gem install bundler`
-2. `bundle install`
-3. `bundle exec jekyll serve`
+1. `npm install`
+3. `npm run serve`
 
-This will launch the site running locally at [http://localhost:4000](http://localhost:4000). Press <kbd>Ctrl</kbd>+<kbd>C</kbd> to stop the server.
+This will launch the site running locally at [http://localhost:8080](http://localhost:8080). Press <kbd>Ctrl</kbd>+<kbd>C</kbd> to stop the server.
 
 # Deployment
 

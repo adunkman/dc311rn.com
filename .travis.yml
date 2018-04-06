@@ -1,4 +1,12 @@
+language: node_js
+node_js:
+  - node
+
 script: NODE_ENV=production npm run build
+
+cache:
+  directories:
+    - "node_modules"
 
 deploy:
   provider: s3

@@ -1,3 +1,4 @@
+import humanizeDuration from "humanize-duration"
 import DC311Api from "./api/DC311Api.js"
 
 var serviceRequestNumber = new URL(window.location.href).searchParams.get("serviceRequestNumber");
@@ -6,12 +7,18 @@ if (serviceRequestNumber) {
   DC311Api.getServiceRequest(serviceRequestNumber)
     .then(function (r) {
       var status;
+      const options = {
+        units: ["y", "mo", "d", "h", "m"],
+        round: true
+      }
 
       if (r.isClosed()) {
-        status = `Closed at ${r.closedAt().toLocaleString()}.`
+        const duration = humanizeDuration(r.closedAt() - r.requestedAt(), options)
+        status = `Closed after ${duration} at ${r.closedAt().toLocaleString()}.`
       }
       else {
-        status = `In progress, opened at ${r.requestedAt().toLocaleString()}.`
+        const duration = humanizeDuration(new Date() - r.requestedAt(), options)
+        status = `In progress, opened ${duration} ago at ${r.requestedAt().toLocaleString()}.`
       }
 
       document.querySelector(".js-output").innerHTML = `

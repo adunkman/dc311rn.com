@@ -1,5 +1,6 @@
 import humanizeDuration from "humanize-duration"
 import DC311Api from "./api/DC311Api.js"
+import "./index.scss"
 
 const serviceRequestNumber = new URL(window.location.href).searchParams.get("serviceRequestNumber")
 const output = document.body
@@ -25,6 +26,11 @@ if (serviceRequestNumber) {
       output.innerHTML = `
         <div class="service-request">
           <h1>${r.number()}</h1>
+
+          <div class="section status-graphic ${r.isClosed() ? "is-completed" : ""}">
+            <div class="status-graphic-section requested">Requested</div>
+            <div class="status-graphic-section completed">Completed</div>
+          </div>
 
           <div class="section status-text">
             ${status}

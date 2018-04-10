@@ -1,0 +1,27 @@
+.service-request {
+  max-width: 600px;
+}
+
+.service-request .section {
+  margin-bottom: 20px;
+}
+
+.status-graphic {
+  display: flex;
+  justify-content: space-between;
+}
+
+.status-graphic-section:before {
+  content: "";
+  display: block;
+  width: 30px;
+  height: 30px;
+  background-color: #eee;
+  border: 1px #ddd solid;
+  border-radius: 50%;
+  margin: 0 auto 10px;
+}
+
+.map img {
+  max-width: 100%;
+}

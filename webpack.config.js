@@ -7,6 +7,18 @@ const outputDirectory = "website_dist"
 module.exports = {
   entry: "./website/index.js",
   mode: process.env.NODE_ENV === "production" ? "production" : "development",
+  module: {
+    rules: [
+      {
+        test: /\.scss$/,
+        use: [
+          { loader: "style-loader" },
+          { loader: "css-loader" },
+          { loader: "sass-loader" }
+        ]
+      }
+    ]
+  },
   output: {
     path: path.resolve(__dirname, outputDirectory),
     filename: "index.[hash].js"

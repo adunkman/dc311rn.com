@@ -4,7 +4,7 @@ exports.handler = (event, context, callback) => {
 
   headers["content-security-policy"] = [{
     key: "Content-Security-Policy",
-    value: "default-src 'none'; img-src 'self' https://maps.googleapis.com; script-src 'self'; style-src 'self'; object-src 'none'; connect-src https://maps2.dcgis.dc.gov"
+    value: "default-src 'none'; img-src 'self' https://maps.googleapis.com; script-src 'self'; style-src 'self' 'unsafe-inline'; object-src 'none'; connect-src https://maps2.dcgis.dc.gov"
   }];
 
   headers["x-content-type-options"] = [{

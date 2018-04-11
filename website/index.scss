@@ -1,27 +1,123 @@
-.service-request {
+body {
   max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: sans-serif;
+  line-height: 1.5
 }
 
-.service-request .section {
+* {
+  box-sizing: border-box;
+}
+
+h1 {
+  text-align: center;
+}
+
+.section {
   margin-bottom: 20px;
+  &.with-icon {
+    display: flex;
+    align-items: baseline;
+    .icon {
+      width: 20px;
+      margin-right: 10px;
+    }
+  }
 }
 
 .status-graphic {
   display: flex;
   justify-content: space-between;
+  position: relative;
+  &:before,
+  &:after {
+    content: "";
+    position: absolute;
+    top: 13px;
+    width: 100%;
+    display: block;
+    height: 5px;
+  }
+  &:before {
+    background-color: #eee;
+  }
+  &:after {
+    background-color: #007aff;
+    width: 50%;
+    animation: status-graphic-bar-entrance 1.5s cubic-bezier(0, .47, .38, 1) forwards;
+  }
+  &.is-completed:after {
+    width: 100%;
+  }
 }
 
-.status-graphic-section:before {
-  content: "";
-  display: block;
-  width: 30px;
-  height: 30px;
-  background-color: #eee;
-  border: 1px #ddd solid;
-  border-radius: 50%;
-  margin: 0 auto 10px;
+.status-graphic-section {
+  background-color: #fff;
+  position: relative;
+  z-index: 1;
+  &.requested {
+    padding-right: 10px;
+  }
+  &.completed {
+    padding-left: 10px;
+  }
+  &:before {
+    content: "";
+    display: block;
+    width: 30px;
+    height: 30px;
+    background-color: #eee;
+    border-radius: 50%;
+    margin: 0 auto 10px;
+    line-height: 30px;
+    text-align: center;
+  }
+  &.requested:before,
+  .is-completed &.completed:before {
+    content: "✔";
+    color: #fff;
+    background-color: #007aff;
+  }
 }
 
 .map img {
   max-width: 100%;
+}
+
+@keyframes status-graphic-bar-entrance {
+  0% { width: 0px; }
+}
+
+label {
+  display: block;
+  padding-bottom: 5px;
+}
+
+input {
+  width: 100%;
+  line-height: inherit;
+  font-size: inherit;
+  padding: 5px;
+  margin-bottom: 10px;
+  border-radius: 4px;
+  border: 1px #ccc solid;
+}
+
+button {
+  line-height: inherit;
+  font-size: inherit;
+  padding: 5px 10px;
+  border-radius: 4px;
+  border: 1px #ccc solid;
+  background: linear-gradient(#fff, #eee);
+}
+
+.section.about {
+  margin-top: 80px;
+  opacity: 0.5;
+  transition: opacity 1s linear;
+  &:hover {
+    opacity: 1;
+  }
 }

@@ -66,6 +66,7 @@ if (serviceRequestNumberMatch) {
                 center: r.coordinates(),
                 markers: r.coordinates(),
                 size: "600x300",
+                key: "AIzaSyBKs9MlfH-bo1lPMx5zS7u8gjDujY3vXO8",
                 scale: 2,
                 zoom: 15
               })}">

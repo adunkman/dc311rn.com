@@ -17,7 +17,6 @@ app.locals.assets = assets.paths
 app.use(logger())
 
 app.use(helmet())
-app.use(helmet.noCache())
 app.use(helmet.referrerPolicy({ policy: "same-origin" }))
 app.use(helmet.contentSecurityPolicy({
   directives: {
@@ -31,6 +30,9 @@ app.use(helmet.contentSecurityPolicy({
 }))
 
 app.use(assets)
+
+app.use(helmet.noCache())
+
 app.use(layouts)
 app.use(routes)
 

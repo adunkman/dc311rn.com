@@ -26,7 +26,7 @@ else {
     css: `${config.output.publicPath}${manifest["styles.css"]}`
   }
 
-  app.use("/cloudfront-asset-requests", express.static("../dist/"))
+  app.use("/cloudfront-asset-requests", express.static("dist/"))
 }
 
 module.exports = app

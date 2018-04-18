@@ -1,0 +1,73 @@
+<%- contentFor("head") %>
+
+<meta name="twitter:card" content="summary">
+<meta property="og:title" content="Service Request <%= request.number %>">
+<meta property="og:description" content="DC 311 service request for <%= request.type %> opened <%= request.requestedAt.toLocaleString() %>">
+<meta property="og:image" content="https://maps.googleapis.com/maps/api/staticmap?<%= new URLSearchParams({
+  center: request.coordinates,
+  markers: request.coordinates,
+  size: "200x200",
+  key: "AIzaSyBKs9MlfH-bo1lPMx5zS7u8gjDujY3vXO8",
+  scale: 2,
+  zoom: 15
+}) %>">
+<meta property="og:image:alt" content="Map of service request location, coordinates <%= request.coordinates %>.">
+
+<title><%= request.number %> • dc311rn.com</title>
+
+<%- contentFor("body") %>
+
+<div class="service-request">
+  <h1><%= request.number %></h1>
+
+  <div class="section status-graphic <%= request.isClosed ? "is-completed" : "" %>">
+    <div class="status-graphic-section requested">Requested</div>
+    <div class="status-graphic-section completed">Completed</div>
+  </div>
+
+  <div class="section status-text with-icon">
+    <div class="icon">⏱</div>
+    <div>
+      <% if (request.isClosed) { %>
+        <time datetime="<%= request.closedAt.toISOString() %>" title="<%= request.closedAt.toLocaleString() %>"><%= humanizeDuration(request.closedAt - request.requestedAt) %></time> from request to completion.
+      <% } else { %>
+        <time datetime="<%= request.requestedAt.toISOString() %>" title="<%= request.requestedAt.toLocaleString() %>"><%= humanizeDuration(new Date() - request.requestedAt) %></time> since request was opened.
+      <% } %>
+    </div>
+  </div>
+
+  <div class="section request-type with-icon">
+    <div class="icon">🧐</div>
+    <div>
+      <div class="request-type"><%= request.type %></div>
+      <div class="assignee"><%= request.organization %>, <%= request.department %></div>
+    </div>
+  </div>
+
+  <% if (request.hasAddress) { %>
+    <div class="section address with-icon">
+      <div class="icon">📍</div>
+      <div><%- request.addressLines.join("<br>") %></div>
+    </div>
+  <% } %>
+
+  <div class="section map">
+    <a href="https://www.google.com/maps/search/?<%= new URLSearchParams({
+      api: 1,
+      query: request.coordinates
+    }) %>" target="_blank" rel="noopener noreferrer">
+      <img src="https://maps.googleapis.com/maps/api/staticmap?<%= new URLSearchParams({
+        center: request.coordinates,
+        markers: request.coordinates,
+        size: "600x300",
+        key: "AIzaSyBKs9MlfH-bo1lPMx5zS7u8gjDujY3vXO8",
+        scale: 2,
+        zoom: 15
+      }) %>">
+    </a>
+  </div>
+
+  <div class="section home">
+    <a href="/">Find Another Service Request</a>
+  </div>
+</div>

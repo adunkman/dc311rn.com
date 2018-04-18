@@ -2,10 +2,10 @@
 
 # Development
 
-To run this application locally, you’ll need to install the dependencies and then launch the web server which automatically recompiles the site when changes are made.
+To run this application locally, you’ll need to install the dependencies and then launch the web server:
 
 1. `npm install`
-3. `npm run serve`
+3. `npm start`
 
 This will launch the site running locally at [http://localhost:8080](http://localhost:8080). Press <kbd>Ctrl</kbd>+<kbd>C</kbd> to stop the server.
 

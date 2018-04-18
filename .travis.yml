@@ -2,20 +2,8 @@ language: node_js
 node_js:
   - node
 
-script: NODE_ENV=production npm run build
+script: NODE_ENV=production npm run build-production
 
 cache:
   directories:
     - "node_modules"
-
-deploy:
-  provider: s3
-  access_key_id: AKIAIDMTANLAC7RD5ENQ
-  secret_access_key:
-    secure: LXRJ0u8s5ceDfpvLmdOQyNWCbyZ3ub/2v28Y9X+lwHa4bkorg+QYTyUAh3EprWyXAJgsmItJxs+ZGJtCFAU8+kK1Jhs173mg3WH4eu7qeCOgrFQp+CWQbfagFr02b+g8gCfJspfLkGpgTMd3geNYvpvZU46AE34LamaZSDlyzd001+RS1DP5LdGbwJeAKj/vtd6EhRi57IB+vTODO7AqMfBu41G8n8P1UQJ1/5uvh53ojvOGpdfnk4PK5h5gGzhk5jYySUhORbltGEH7VSRQCrRGock3GNqHV+x3RWsUDvjYGdv4mmBn5oMZXtAvLwVT/GZ6Tso3V6Tdno9MqsXbXypjJfZtbIBjg0fxJeogetXslRyEmmAIfxEpR6CRjliiLPtn/vTw9vb/qnwZ/U4CsjqT8Wz8MX+DeFcG+k8qOUQG7BiONvLjpVQ5rcXwa0BCR5kYNg834n0FWKMIjiHkKQpKKhFxH7ZmFe31GJlPyWyzKz5ogOIurkvRB7uSsAUhz8BwF7cmvBj9ttV0k/tOIeKBXiQndhMog6pAm4fRl+sINq52bd30T/0MsoD9lh7phkQmfBCY0chauA15GEma2XvdNbHQc8AFde4fR7hiDBxHdmqn/6k+g14ckmWGv7Ilp41zK5BA2cDkBupeKTW1gim8t7Qbrk0YFtGvPM0zdO0=
-  bucket: www.dc311rn.com
-  local-dir: website_dist
-  acl: public_read
-  skip_cleanup: true
-  on:
-    repo: adunkman/dc311rn.com

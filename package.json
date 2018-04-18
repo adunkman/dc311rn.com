@@ -4,8 +4,11 @@
   "description": "Quickly check the status of a DC 311 service request.",
   "private": true,
   "scripts": {
-    "build": "webpack",
-    "serve": "webpack-serve --open"
+    "start": "node --experimental-modules server.mjs | bunyan",
+    "clean": "rm -r dist/",
+    "build-production": "NODE_ENV=production webpack --config config/webpack.js",
+    "start-production": "node --experimental-modules server.mjs",
+    "heroku-postbuild": "npm run build-production"
   },
   "repository": {
     "type": "git",
@@ -16,17 +19,28 @@
   "bugs": {
     "url": "https://github.com/adunkman/dc311rn.com/issues"
   },
+  "engines": {
+    "node": ">= 9.0.0"
+  },
   "homepage": "https://www.dc311rn.com",
+  "main": "server.mjs",
   "devDependencies": {
-    "clean-webpack-plugin": "^0.1.19",
     "css-loader": "^0.28.11",
-    "html-webpack-plugin": "^3.2.0",
-    "humanize-duration": "^3.14.0",
+    "mini-css-extract-plugin": "^0.4.0",
     "node-sass": "^4.8.3",
     "sass-loader": "^6.0.7",
-    "style-loader": "^0.20.3",
     "webpack": "^4.5.0",
+    "webpack-assets-manifest": "^3.0.1",
     "webpack-cli": "^2.0.14",
-    "webpack-serve": "^0.3.1"
+    "webpack-dev-middleware": "^3.1.2"
+  },
+  "dependencies": {
+    "bunyan": "^1.8.12",
+    "express": "^4.16.3",
+    "express-bunyan-logger": "^1.3.3",
+    "express-ejs-layouts": "^2.4.0",
+    "helmet": "^3.12.0",
+    "humanize-duration": "^3.14.0",
+    "node-fetch": "^2.1.2"
   }
 }

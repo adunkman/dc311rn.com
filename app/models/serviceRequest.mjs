@@ -31,7 +31,9 @@ export default class ServiceRequest {
   get dueAt() { return toDate(this.attributes.SERVICEDUEDATE) }
   get closedAt() { return toDate(this.attributes.RESOLUTIONDATE) }
 
-  get coordinates() { return [ this.attributes.LATITUDE, this.attributes.LONGITUDE ] }
+  get latitude() { return this.attributes.LATITUDE }
+  get longitude() { return this.attributes.LONGITUDE }
+  get coordinates() { return [ this.latitude, this.longitude ] }
   get hasAddress() { return !!this.attributes.STREETADDRESS }
   get addressLines() {
     if (this.hasAddress) {

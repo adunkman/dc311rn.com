@@ -23,6 +23,7 @@ app.use(helmet.contentSecurityPolicy({
     defaultSrc: ["'none'"],
     styleSrc: isProduction ? ["https://assets.dc311rn.com"] : ["'self'"],
     scriptSrc: isProduction ? ["https://assets.dc311rn.com"] : ["'self'", "'unsafe-eval'"],
+    connectSrc: ["'self'"],
     imgSrc: ["https://maps.googleapis.com"],
     upgradeInsecureRequests: isProduction
   },

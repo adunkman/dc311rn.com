@@ -38,6 +38,41 @@ export default class DC311 {
       return new ServiceRequest(features[0].attributes)
     }
   }
+
+  static async getServiceRequests() {
+    const params = {
+      orderByFields: "ADDDATE desc",
+      f: "json"
+    }
+
+    const since = new Date()
+    since.setDate(since.getDate() - 7)
+
+    const ids = await this.getIds(Object.assign({
+      where: `ADDDATE > date '${since.toISOString().split("T")[0]}'`
+    }, params))
+
+    const qs = new URLSearchParams(Object.assign({
+      objectIds: ids.join(),
+      outFields: "*"
+    }, params))
+
+    const response = await fetch(`${endpoint}?${qs}`)
+    const { features } = await response.json()
+
+    return features.map((f) => new ServiceRequest(f.attributes))
+  }
+
+  static async getIds(options) {
+    const params = new URLSearchParams(Object.assign({
+      returnIdsOnly: true
+    }, options))
+
+    const response = await fetch(`${endpoint}?${params}`)
+    const { objectIds } = await response.json()
+
+    return objectIds.slice(0, 10)
+  }
 }
 
 Object.assign(DC311, { ServiceRequestNotFound })

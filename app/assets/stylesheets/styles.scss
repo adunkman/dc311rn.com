@@ -1,9 +1,14 @@
+html {
+  color: #000;
+  background-color: #fff;
+  font-family: sans-serif;
+  line-height: 1.5;
+}
+
 body {
   max-width: 600px;
   margin: 0 auto;
   padding: 20px;
-  font-family: sans-serif;
-  line-height: 1.5
 }
 
 * {
@@ -110,6 +115,7 @@ h1 {
   border-radius: 5px;
   position: relative;
   overflow: hidden;
+  flex-shrink: 0;
 
   img {
     width: 100%;
@@ -156,4 +162,15 @@ button {
   border: 1px #ccc solid;
   background: linear-gradient(#fff, #eee);
   cursor: pointer;
+}
+
+details {
+  summary {
+    display: inline-block;
+    cursor: pointer;
+  }
+
+  p:last-child {
+    margin-bottom: 0;
+  }
 }

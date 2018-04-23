@@ -1,8 +1,8 @@
 import serviceRequestHelper from "../../../helpers/serviceRequest"
 
-export default class Index {
+export default class Lookup {
   constructor() {
-    if (!(this.form = document.querySelector(".service-request-lookup"))) {
+    if (!(this.form = document.querySelector(".lookup-feature"))) {
       return
     }
 

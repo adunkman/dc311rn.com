@@ -1,5 +1,9 @@
 import progressive from "./lib/progressive"
-import pages from "./pages/all"
+import LookupFeature from "./features/lookup"
+import OutdatedFeature from "./features/outdated"
 
-document.addEventListener("DOMContentLoaded", progressive.enhance)
-document.addEventListener("DOMContentLoaded", pages.initialize)
+document.addEventListener("DOMContentLoaded", () => {
+  progressive.enhance()
+  new LookupFeature()
+  new OutdatedFeature()
+})

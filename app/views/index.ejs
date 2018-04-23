@@ -10,11 +10,13 @@
 
 <h1>DC 311 Service Request Lookup</h1>
 
+<div class="section with-background with-space error outdated-feature" hidden></div>
+
 <div class="section form with-space">
   <noscript>
     <p>To look up a service request, enable JavaScript in your browser or append a service request number to the URL: <code>https://www.dc311rn.com/18-00138559</code>.</p>
   </noscript>
-  <form class="yesscript service-request-lookup" hidden>
+  <form class="yesscript lookup-feature" hidden>
     <label for="serviceRequestNumber">Service Request Number</label>
     <input type="text" name="serviceRequestNumber" placeholder="18-00138559" id="serviceRequestNumber" required pattern="<%= requestNumberPattern.source %>" autofocus>
     <button>Search</button>

@@ -10,6 +10,12 @@ app.get("/", (req, res) => res.render("index", {
   requestNumberPattern: serviceRequestHelper.pattern
 }))
 
+app.get("/requests/recent", (req, res, next) => {
+  DC311.getServiceRequests()
+    .then((requests) => res.send(requests.map((r) => r.attributes)))
+    .catch(next)
+})
+
 app.get(serviceRequestHelper.pattern, (req, res, next) => {
   const requestNumber = `${req.params[0]}-${req.params[1]}`
 

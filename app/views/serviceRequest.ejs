@@ -20,6 +20,8 @@
 <div class="service-request">
   <h1><%= request.number %></h1>
 
+  <div class="section with-background with-space error outdated-feature" hidden></div>
+
   <div class="section status-graphic <%= request.isClosed ? "is-completed" : "" %>">
     <div class="status-graphic-section requested">Requested</div>
     <div class="status-graphic-section completed">Completed</div>

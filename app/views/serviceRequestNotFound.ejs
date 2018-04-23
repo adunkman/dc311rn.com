@@ -11,16 +11,30 @@
 <h1>DC 311 Service Request Lookup</h1>
 
 <div class="section with-background with-space error">
-  <p>We were unable to find <strong><%= requestNumber %></strong> in DC’s 311 service request database.</p>
+  <p>We were unable to find <strong><%= requestNumber %></strong> in DC’s OpenData export of 311 service requests.</p>
 </div>
 
-<div class="section form">
-  <noscript>
-    <p>To look up a service request, enable JavaScript in your browser or append a service request number to the URL: <code>https://www.dc311rn.com/18-00138559</code>.</p>
-  </noscript>
-  <form class="yesscript service-request-lookup" hidden>
-    <label for="serviceRequestNumber">Service Request Number</label>
-    <input type="text" name="serviceRequestNumber" placeholder="18-00138559" id="serviceRequestNumber" required pattern="<%= requestNumberPattern.source %>" autofocus>
-    <button>Search</button>
+<div class="section explanation">
+  <h2>Why?</h2>
+  <p>This doesn’t mean that your service request is lost — sometimes the export of service requests lags behind 311’s internal database, which we don’t have access to.</p>
+
+  <p>If you know the email address associated with this service request, you can look it up directly in 311’s database.</p>
+
+  <form action="https://311.dc.gov/" method="GET">
+    <input type="hidden" name="serviceRequestId" value="<%= requestNumber %>">
+    <label for="email">Email Address</label>
+    <input type="email" name="email" id="email" required autofocus>
+
+    <button>Go to 311.dc.gov</button>
   </form>
+
+  <h2>What’s DC 311’s OpenData export?</h2>
+
+  <p>The citizens of DC pay for our 311 service, and we pay for service requests to be stored electronically in a searchable format in order for 311 to be effective. DC realizes that data’s greatest value comes from having it freely shared among agencies, federal and regional governments and with the public to the extent possible when considering safety, privacy and security.</p>
+
+  <p>DC publishes not only 311 data, but quite a bit more from many other federal agencies — you can learn more and explore the data at <a href="http://opendata.dc.gov/" target="_blank" rel="noopener noreferrer">opendata.dc.gov</a>.</p>
+</div>
+
+<div class="section home">
+  <a href="/">Find Another Service Request</a>
 </div>

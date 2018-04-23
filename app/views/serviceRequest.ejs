@@ -67,6 +67,18 @@
     </a>
   </div>
 
+  <div class="section login">
+    <p>More information may be available about this service request if you know the email address associated with it.</p>
+
+    <form action="https://311.dc.gov/" method="GET">
+      <input type="hidden" name="serviceRequestId" value="<%= request.id %>">
+      <label for="email">Email Address</label>
+      <input type="email" name="email" id="email" required autofocus>
+
+      <button>Go to 311.dc.gov</button>
+    </form>
+  </div>
+
   <div class="section home">
     <a href="/">Find Another Service Request</a>
   </div>

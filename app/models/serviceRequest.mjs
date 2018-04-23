@@ -24,6 +24,8 @@ export default class ServiceRequest {
   get type() { return this.attributes.SERVICECODEDESCRIPTION }
   get department() { return this.attributes.SERVICETYPECODEDESCRIPTION }
   get organization() { return this.attributes.ORGANIZATIONACRONYM }
+  get hasDetails() { return !!this.details }
+  get details() { return this.attributes.DETAILS }
 
   get requestedAt() { return toDate(this.attributes.SERVICEORDERDATE) }
   get dueAt() { return toDate(this.attributes.SERVICEDUEDATE) }

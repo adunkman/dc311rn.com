@@ -46,6 +46,13 @@
     </div>
   </div>
 
+  <% if (request.hasDetails) { %>
+    <div class="section details with-icon">
+      <div class="icon">📝</div>
+      <div><%= request.details %></div>
+    </div>
+  <% } %>
+
   <% if (request.hasAddress) { %>
     <div class="section address with-icon">
       <div class="icon">📍</div>
@@ -53,7 +60,7 @@
     </div>
   <% } %>
 
-  <div class="section map">
+  <div class="section with-space map">
     <a href="https://www.google.com/maps/search/?<%= new URLSearchParams({
       api: 1,
       query: request.coordinates
@@ -65,7 +72,7 @@
         key: "AIzaSyBKs9MlfH-bo1lPMx5zS7u8gjDujY3vXO8",
         scale: 2,
         zoom: 15
-      }) %>">
+      }) %>" alt="Map of service request coordinates <%= request.coordinates %>">
     </a>
   </div>
 
@@ -75,7 +82,7 @@
     <form action="https://311.dc.gov/" method="GET">
       <input type="hidden" name="serviceRequestId" value="<%= request.id %>">
       <label for="email">Email Address</label>
-      <input type="email" name="email" id="email" required autofocus>
+      <input type="email" name="email" id="email" required>
 
       <button>Go to 311.dc.gov</button>
     </form>

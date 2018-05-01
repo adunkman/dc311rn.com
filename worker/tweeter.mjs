@@ -44,7 +44,7 @@ export default class Tweeter {
 
     try {
       tweetsFrom311 = await this.twitter.search({ q: "from:311dcgov", count: 15 })
-      tweetsFromMe = await this.twitter.search({ q: "from:dc311rn", count: 30 })
+      tweetsFromMe = await this.twitter.userTimeline("dc311rn")
     }
     catch (err) {
       this.logger.warn({ err }, "Unable to fetch tweets from Twitter.")

@@ -62,6 +62,28 @@ export default class Twitter {
     return body.statuses.map((attributes) => new Tweet(attributes))
   }
 
+  async userTimeline(user) {
+    const method = "GET"
+    const url = "https://api.twitter.com/1.1/statuses/user_timeline.json"
+    const params = {
+      screen_name: user,
+      exclude_replies: false,
+      include_rts: true
+    }
+    const authorization = this.generateUserAuthorization(method, url, params)
+
+    const response = await fetch(`${url}?${new URLSearchParams(params)}`, {
+      method,
+      headers: {
+        "Authorization": `OAuth ${authorization}`
+      }
+    })
+
+    const body = await response.json()
+
+    return body.map((attributes) => new Tweet(attributes))
+  }
+
   async tweet(tweet) {
     const method = "POST"
     const url = "https://api.twitter.com/1.1/statuses/update.json"

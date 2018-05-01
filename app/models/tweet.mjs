@@ -12,7 +12,7 @@ export default class Tweet {
   get createdAt() { return new Date(Date.parse(this.attributes.created_at)) }
   get serviceRequestNumbers() {
     const numbers = []
-    const pattern = serviceRequestHelper.pattern
+    const pattern = new RegExp(serviceRequestHelper.pattern, "g")
     let matches
 
     while (matches = pattern.exec(this.text)) {

@@ -39,6 +39,9 @@ export default class Tweeter {
   async processTweets() {
     this.logger.info("Fetching and processing new 311 tweets from Twitter.")
 
+    const oneHourAgo = new Date()
+    oneHourAgo.setHours(oneHourAgo.getHours() - 1)
+
     let tweetsFrom311
     let tweetsFromMe
 
@@ -57,8 +60,8 @@ export default class Tweeter {
         this.logger.info({ tweet }, "Already tweeted a reply to this tweet.")
         return false
       }
-      else if (tweet.createdAt < Date.parse("Thu Apr 19 2018 16:00:00 GMT-0400 (EDT)")) {
-        this.logger.info({ tweet }, "Skipping reply to tweet earlier than service launch time.")
+      else if (tweet.createdAt < oneHourAgo) {
+        this.logger.info({ tweet }, "Skipping reply to tweet earlier than one hour before boot time (service was offline).")
         return false
       }
       else {

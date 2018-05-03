@@ -1,0 +1,19 @@
+{
+  "name": "dc311rn.com",
+  "description": "Quickly check the status of a DC 311 service request.",
+  "scripts": {},
+  "env": {
+    "TZ": "America/New_York"
+  },
+  "formation": {
+    "web": {
+      "quantity": 1
+    }
+  },
+  "addons": [],
+  "buildpacks": [
+    {
+      "url": "heroku/nodejs"
+    }
+  ]
+}

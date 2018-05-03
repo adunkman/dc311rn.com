@@ -3,7 +3,14 @@
   "description": "Quickly check the status of a DC 311 service request.",
   "scripts": {},
   "env": {
-    "TZ": "America/New_York"
+    "TZ": "America/New_York",
+    "NODE_ENV": "staging",
+    "TWITTER_CONSUMER_KEY": {
+      "description": "A staging-only Twitter Consumer Key will be provided automatically."
+    },
+    "TWITTER_CONSUMER_SECRET": {
+      "description": "A staging-only Twitter Consumer Secret will be provided automatically."
+    }
   },
   "formation": {
     "web": {

@@ -16,6 +16,7 @@ app.set("layout", "layouts/default")
 app.locals.assets = assets.paths
 
 app.use(logger())
+app.use(logger.errorLogger())
 
 app.use(helmet())
 app.use(helmet.referrerPolicy({ policy: "same-origin" }))

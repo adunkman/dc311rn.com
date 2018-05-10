@@ -26,7 +26,10 @@ else {
     css: `${config.output.publicPath}${manifest["styles.css"]}`
   }
 
-  app.use("/cloudfront-asset-requests", express.static("dist/"))
+  app.use("/cloudfront-asset-requests", express.static("dist/", {
+    maxAge: 31536000000,
+    immutable: true
+  }))
 }
 
 module.exports = app

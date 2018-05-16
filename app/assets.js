@@ -9,6 +9,7 @@ if (process.env.NODE_ENV !== "production") {
   const compiler = webpack(config)
 
   app.paths = {
+    favicon: `${config.output.publicPath}favicon.png`,
     js: `${config.output.publicPath}client.js`,
     css: `${config.output.publicPath}styles.css`
   }
@@ -22,6 +23,7 @@ else {
   const manifest = require(`${config.output.path}/manifest.json`)
 
   app.paths = {
+    favicon: `${config.output.publicPath}${manifest["favicon.png"]}`,
     js: `${config.output.publicPath}${manifest["client.js"]}`,
     css: `${config.output.publicPath}${manifest["styles.css"]}`
   }

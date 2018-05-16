@@ -6,6 +6,7 @@ const isProduction = process.env.NODE_ENV === "production"
 
 module.exports = {
   entry: {
+    favicon: "./app/assets/images/favicon.png",
     client: "./app/assets/javascripts/client.mjs",
     styles: "./app/assets/stylesheets/styles.scss"
   },
@@ -18,6 +19,18 @@ module.exports = {
           ExtractCssPlugin.loader,
           "css-loader",
           "sass-loader"
+        ]
+      },
+      {
+        test: /\.(gif|png|jpe?g|svg)$/,
+        use: [
+          {
+            loader: "file-loader",
+            options: {
+              name: isProduction ? "[name].[hash].[ext]" : "[name].[ext]"
+            }
+          },
+          "image-webpack-loader"
         ]
       }
     ]

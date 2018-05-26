@@ -2,6 +2,14 @@ language: node_js
 node_js:
   - node
 
+env:
+  global:
+    secure: YcpU4cIRzFSWYha5JBToATx5Q/JP9OG2504F6uh5zmJ3gXwHCVC6dYs0U84fl8Ehe7kDRpuMNtZj1W5SWJKv/Mr356RNgX9KsC85ceO0243d8DuHT3rH5+1fkeoivAUbY2rPi4kyAtE7Xrncbt1sAMcsvZNKdt6RO+4o+UAU3Nzs2fUhPtichUTQ4NjLtJ5IUW8DWf1RYFkkyxqOmLuAZtrrsGaPWQu2vz/w+lspdy3uQ7GAm53LSpT4+7JP/WURb25H9+ea7n+oc35HzzexkeZSS/WKl2Q+rGFtxKqa61DVSgPO0SOiQ6ohbQErKVWRlpnaBFgCDHC0VWSixmA+TEFsqcQ0aHTotNqtsNYdhEUr8b9MUhX8lCgylYc3v1m4WdlfhIFzWMrfI9bdQn6QrWSZT7apw8pCOEI+q7+A6pdrtpNNriR0iPsmxBV6TL9P70wEqzxlmzWHtixTwVaQtPkdZm7XF/igiCebpU6X8yiPhT9CPLR9+it1n7tXHgsapcAIowaVM7/cbzwiDP18acC4jq5HoLsHEyAJTOsUoBPYoRRBH3fngOhoTRC3Yc/lIOlFzNujVlW+YcygMfmt4kUkmR0PY9zYsbDPTet/Bj0Cd9Uf4Rc7eWPaKIlvtT/LVs5ibfHO/bnKk8iscvDm/DBaea93/zPWy2ZLI3KRfqU=
+
+before_install: npm install -g greenkeeper-lockfile
+before_script: greenkeeper-lockfile-update
+after_script: greenkeeper-lockfile-upload
+
 script: NODE_ENV=production npm run build-production
 
 cache:

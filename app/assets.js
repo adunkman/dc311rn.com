@@ -1,8 +1,8 @@
 const express = require("express")
-const config = require("../config/webpack")
 const app = express.Router()
 
 if (process.env.NODE_ENV !== "production") {
+  const config = require("../config/webpack")
   const webpack = require("webpack")
   const middleware = require("webpack-dev-middleware")
 
@@ -20,12 +20,12 @@ if (process.env.NODE_ENV !== "production") {
   }))
 }
 else {
-  const manifest = require(`${config.output.path}/manifest.json`)
+  const manifest = require("../dist/manifest.json")
 
   app.paths = {
-    favicon: `${config.output.publicPath}${manifest["favicon.png"]}`,
-    js: `${config.output.publicPath}${manifest["client.js"]}`,
-    css: `${config.output.publicPath}${manifest["styles.css"]}`
+    favicon: `https://assets.dc311rn.com/${manifest["favicon.png"]}`,
+    js: `https://assets.dc311rn.com/${manifest["client.js"]}`,
+    css: `https://assets.dc311rn.com/${manifest["styles.css"]}`
   }
 
   app.use("/cloudfront-asset-requests", express.static("dist/", {

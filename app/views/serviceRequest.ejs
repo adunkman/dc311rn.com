@@ -80,7 +80,7 @@
     <p>More information may be available about this service request if you know the email address associated with it.</p>
 
     <form action="https://311.dc.gov/" method="GET">
-      <input type="hidden" name="serviceRequestId" value="<%= request.id %>">
+      <input type="hidden" name="serviceRequestId" value="<%= request.number %>">
       <label for="email">Email Address</label>
       <input type="email" name="email" id="email" required>
 

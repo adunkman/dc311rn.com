@@ -1,10 +1,13 @@
+import "babel-core/register"
+import "babel-polyfill"
+
 import express from "express"
 import helmet from "helmet"
 import logger from "express-bunyan-logger"
 import layouts from "express-ejs-layouts"
 
-import routes from "./app/routes"
-import assets from "./app/assets"
+import routes from "./routes"
+import assets from "./assets"
 import Tweeter from "./worker/tweeter"
 
 const isProduction = process.env.NODE_ENV === "production"

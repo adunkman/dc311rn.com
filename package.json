@@ -4,10 +4,10 @@
   "description": "Quickly check the status of a DC 311 service request.",
   "private": true,
   "scripts": {
-    "start": "node --experimental-modules server.mjs | bunyan",
+    "start": "babel-node app/server.js | bunyan",
     "clean": "rm -r dist/",
-    "build-production": "NODE_ENV=production webpack --config config/webpack.js",
-    "start-production": "node --experimental-modules server.mjs",
+    "build-production": "NODE_ENV=production webpack --config config/webpack.js && babel app -d dist/",
+    "start-production": "node dist/server.js",
     "heroku-postbuild": "npm run build-production"
   },
   "repository": {
@@ -23,8 +23,14 @@
     "node": ">= 9.0.0"
   },
   "homepage": "https://www.dc311rn.com",
-  "main": "server.mjs",
+  "main": "app/server.js",
   "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.4",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-stage-2": "^6.24.1",
     "css-loader": "^0.28.11",
     "file-loader": "^1.1.11",
     "image-webpack-loader": "^4.2.0",

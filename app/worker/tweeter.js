@@ -1,6 +1,6 @@
 import bunyan from "bunyan"
-import Twitter from "../app/api/twitter"
-import DC311 from "../app/api/dc311"
+import Twitter from "../api/twitter"
+import DC311 from "../api/dc311"
 
 export default class Tweeter {
   constructor() {

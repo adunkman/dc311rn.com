@@ -7,7 +7,7 @@ const isProduction = process.env.NODE_ENV === "production"
 module.exports = {
   entry: {
     favicon: "./app/assets/images/favicon.png",
-    client: "./app/assets/javascripts/client.mjs",
+    client: "./app/assets/javascripts/client.js",
     styles: "./app/assets/stylesheets/styles.scss"
   },
   mode: isProduction ? "production" : "development",

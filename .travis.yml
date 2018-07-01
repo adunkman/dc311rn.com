@@ -10,7 +10,7 @@ before_install: npm install -g greenkeeper-lockfile
 before_script: greenkeeper-lockfile-update
 after_script: greenkeeper-lockfile-upload
 
-script: NODE_ENV=production npm run build-production
+script: npm test && NODE_ENV=production npm run build-production
 
 cache:
   directories:

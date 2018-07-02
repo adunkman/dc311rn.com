@@ -1,17 +1,19 @@
-const toDate = (apiTimeFormat) => {
-  if (!apiTimeFormat) {
+import timezone from "timezone"
+import tzdata from "timezone/America/New_York"
+
+const tz = timezone(tzdata)
+
+// Unfortunately, the DC311 API gives unix timestamps that are not in UTC — they
+// represent the time in either EST or EDT, depending on the time of year.
+const toDate = (localizedUnixTimestamp) => {
+  if (!localizedUnixTimestamp) {
     return
   }
 
-  const originalTimezoneOffset = new Date(apiTimeFormat).getTimezoneOffset()
-  const date = new Date(apiTimeFormat + originalTimezoneOffset * 60000)
+  const isoTimestampWithoutTimezone = new Date(localizedUnixTimestamp).toISOString().split("Z")[0]
+  const unixTimestamp = tz(isoTimestampWithoutTimezone, "America/New_York")
 
-  if (date.getTimezoneOffset() !== originalTimezoneOffset) {
-    return new Date(apiTimeFormat + date.getTimezoneOffset() * 60000)
-  }
-  else {
-    return date
-  }
+  return new Date(unixTimestamp)
 }
 
 export default class ServiceRequest {

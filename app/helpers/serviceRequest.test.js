@@ -1,4 +1,4 @@
-import serviceRequestHelper from "../helpers/serviceRequest"
+import serviceRequestHelper from "./serviceRequest"
 
 test("the regular expression does not have state", () => {
   // Regular expressions with the “g” flag set have internal state, causing

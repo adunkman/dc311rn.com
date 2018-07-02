@@ -9,10 +9,7 @@ const endpoint = "https://maps2.dcgis.dc.gov/dcgis/rest/services/DCGIS_DATA/Serv
 class ServiceRequestNotFound extends Error {
   constructor(...params) {
     super(...params)
-
-    if (Error.captureStackTrace) {
-      Error.captureStackTrace(this, this.constructor)
-    }
+    Error.captureStackTrace(this, this.constructor)
   }
 }
 

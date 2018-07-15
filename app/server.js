@@ -1,6 +1,3 @@
-import "babel-core/register"
-import "babel-polyfill"
-
 import express from "express"
 import helmet from "helmet"
 import logger from "express-bunyan-logger"

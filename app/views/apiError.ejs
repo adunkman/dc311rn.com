@@ -1,0 +1,42 @@
+<%- contentFor("head") %>
+
+<meta name="twitter:card" content="summary">
+<meta property="og:title" content="DC311 API Error">
+<meta property="og:description" content="DC’s 311 service request database is not responding.">
+
+<title>DC311 API Error • dc311rn.com</title>
+
+<%- contentFor("body") %>
+
+<h1>DC 311 Service Request Lookup</h1>
+
+<div class="section with-background with-space error outdated-feature" hidden></div>
+
+<div class="section with-background with-space error">
+  <p>DC’s OpenData database of 311 service requests is not responding. Refresh the page to retry.</p>
+</div>
+
+<div class="section explanation">
+  <h2>Why?</h2>
+  <p>This doesn’t mean that your service request is lost — sometimes the database of service requests experiences a service outage. It doesn’t mean that DC’s 311 service is down.</p>
+
+  <p>If you know the email address associated with this service request, you can look it up directly in 311’s database.</p>
+
+  <form action="https://311.dc.gov/" method="GET">
+    <input type="hidden" name="serviceRequestId" value="<%= requestNumber %>">
+    <label for="email">Email Address</label>
+    <input type="email" name="email" id="email" required autofocus>
+
+    <button>Go to 311.dc.gov</button>
+  </form>
+
+  <h2>What’s DC 311’s OpenData database?</h2>
+
+  <p>The citizens of DC pay for our 311 service, and we pay for service requests to be stored electronically in a searchable format in order for 311 to be effective. DC realizes that data’s greatest value comes from having it freely shared among agencies, federal and regional governments and with the public to the extent possible when considering safety, privacy and security.</p>
+
+  <p>DC publishes not only 311 data, but quite a bit more from many other federal agencies — you can learn more and explore the data at <a href="http://opendata.dc.gov/" target="_blank" rel="noopener noreferrer">opendata.dc.gov</a>.</p>
+</div>
+
+<div class="section home">
+  <a href="/">Find Another Service Request</a>
+</div>

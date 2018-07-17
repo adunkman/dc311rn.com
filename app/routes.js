@@ -35,6 +35,12 @@ app.get(serviceRequestHelper.pattern, (req, res, next) => {
           requestNumberPattern: serviceRequestHelper.pattern
         })
       }
+      else if (err instanceof DC311.ApiUnavailableError) {
+        res.status(500).render("apiError", {
+          requestNumber,
+          requestNumberPattern: serviceRequestHelper.pattern
+        })
+      }
       else {
         next(err)
       }

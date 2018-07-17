@@ -1,0 +1,30 @@
+{
+  "error": {
+    "message": "getaddrinfo ENOTFOUND maps2.dcgis.dc.gov maps2.dcgis.dc.gov:443",
+    "errno": "ENOTFOUND",
+    "code": "ENOTFOUND",
+    "syscall": "getaddrinfo",
+    "hostname": "maps2.dcgis.dc.gov",
+    "host": "maps2.dcgis.dc.gov",
+    "port": 443
+  },
+  "url": "https://maps2.dcgis.dc.gov/dcgis/rest/services/DCGIS_DATA/ServiceRequests/MapServer/9/query?where=UPPER%28SERVICEREQUESTID%29+like+%27%2518-00381677%25%27&outFields=*&outSR=4326&f=json",
+  "time": 15,
+  "request": {
+    "method": "GET",
+    "headers": {
+      "Accept": [
+        "*/*"
+      ],
+      "User-Agent": [
+        "node-fetch/1.0 (+https://github.com/bitinn/node-fetch)"
+      ],
+      "Accept-Encoding": [
+        "gzip,deflate"
+      ],
+      "Connection": [
+        "close"
+      ]
+    }
+  }
+}

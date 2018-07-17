@@ -15,6 +15,15 @@ class ServiceRequestNotFoundError extends Error {
   }
 }
 
+class ApiUnavailableError extends Error {
+  constructor(error) {
+    super(error.message)
+    this.constructor = ApiUnavailableError
+    this.__proto__ = this.constructor.prototype
+    Error.captureStackTrace(this, this.constructor)
+  }
+}
+
 export default class DC311 {
   static async getServiceRequest(number) {
     const params = new URLSearchParams({
@@ -24,8 +33,7 @@ export default class DC311 {
       f: "json"
     })
 
-    const response = await fetch(`${endpoint}?${params}`)
-    const { features } = await response.json()
+    const { features } = await this.getJson(`${endpoint}?${params}`)
 
     if (features.length === 0) {
       throw new ServiceRequestNotFoundError("No service request was found with that request number.")
@@ -58,8 +66,7 @@ export default class DC311 {
       outFields: "*"
     }, params))
 
-    const response = await fetch(`${endpoint}?${qs}`)
-    const { features } = await response.json()
+    const { features } = await this.getJson(`${endpoint}?${qs}`)
 
     return features.map((f) => new ServiceRequest(f.attributes))
   }
@@ -69,11 +76,24 @@ export default class DC311 {
       returnIdsOnly: true
     }, options))
 
-    const response = await fetch(`${endpoint}?${params}`)
-    const { objectIds } = await response.json()
+    const { objectIds } = await this.getJson(`${endpoint}?${params}`)
 
     return objectIds.slice(0, 10)
   }
+
+  static async getJson(url) {
+    let body
+
+    try {
+      const response = await fetch(url)
+      body = await response.json()
+    }
+    catch (error) {
+      throw new ApiUnavailableError(error)
+    }
+
+    return body
+  }
 }
 
-Object.assign(DC311, { ServiceRequestNotFoundError })
+Object.assign(DC311, { ServiceRequestNotFoundError, ApiUnavailableError })

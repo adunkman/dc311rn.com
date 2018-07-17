@@ -11,6 +11,14 @@ describe("getServiceRequest", () => {
     })
   })
 
+  test("errors in contacting the 311 service throw ApiUnavailableError", () => {
+    expect.hasAssertions()
+
+    return DC311.getServiceRequest("18-00381677").catch((err) => {
+      expect(err).toBeInstanceOf(DC311.ApiUnavailableError)
+    })
+  })
+
   test("if more than one service request is found, it returns an error", () => {
     expect.hasAssertions()
 
@@ -34,6 +42,14 @@ describe("getServiceRequests", () => {
 
     return DC311.getServiceRequests(new Date(1531771015504)).then((objs) => {
       expect(objs).toHaveLength(10)
+    })
+  })
+
+  test("errors in contacting the 311 service throw ApiUnavailableError", () => {
+    expect.hasAssertions()
+
+    return DC311.getServiceRequests(new Date(1531685266836)).catch((err) => {
+      expect(err).toBeInstanceOf(DC311.ApiUnavailableError)
     })
   })
 })

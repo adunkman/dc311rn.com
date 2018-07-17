@@ -3,12 +3,11 @@ import DC311 from "./dc311"
 import ServiceRequest from "../models/serviceRequest"
 
 describe("getServiceRequest", () => {
-  test("a service request which does not exist throws ServiceRequestNotFound", () => {
+  test("a service request which does not exist throws ServiceRequestNotFoundError", () => {
     expect.hasAssertions()
 
     return DC311.getServiceRequest("18-00163257").catch((err) => {
-      expect(err.toString()).toMatch("No service request was found")
-      //expect(err).toBeInstanceOf(DC311.ServiceRequestNotFound)
+      expect(err).toBeInstanceOf(DC311.ServiceRequestNotFoundError)
     })
   })
 

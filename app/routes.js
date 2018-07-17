@@ -29,7 +29,7 @@ app.get(serviceRequestHelper.pattern, (req, res, next) => {
       })
     }))
     .catch((err) => {
-      if (err instanceof DC311.ServiceRequestNotFound) {
+      if (err instanceof DC311.ServiceRequestNotFoundError) {
         res.status(404).render("serviceRequestNotFound", {
           requestNumber,
           requestNumberPattern: serviceRequestHelper.pattern

@@ -6,9 +6,11 @@ const URLSearchParams = url.URLSearchParams
 
 const endpoint = "https://maps2.dcgis.dc.gov/dcgis/rest/services/DCGIS_DATA/ServiceRequests/MapServer/9/query"
 
-class ServiceRequestNotFound extends Error {
-  constructor(...params) {
-    super(...params)
+class ServiceRequestNotFoundError extends Error {
+  constructor(...args) {
+    super(...args)
+    this.constructor = ServiceRequestNotFoundError
+    this.__proto__ = this.constructor.prototype
     Error.captureStackTrace(this, this.constructor)
   }
 }
@@ -26,7 +28,7 @@ export default class DC311 {
     const { features } = await response.json()
 
     if (features.length === 0) {
-      throw new ServiceRequestNotFound("No service request was found with that request number.")
+      throw new ServiceRequestNotFoundError("No service request was found with that request number.")
     }
     else if (features.length > 1) {
       throw new Error("More than one service request found.");
@@ -74,4 +76,4 @@ export default class DC311 {
   }
 }
 
-Object.assign(DC311, { ServiceRequestNotFound })
+Object.assign(DC311, { ServiceRequestNotFoundError })

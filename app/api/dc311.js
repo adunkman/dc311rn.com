@@ -36,14 +36,16 @@ export default class DC311 {
     }
   }
 
-  static async getServiceRequests() {
+  static async getServiceRequests(since) {
     const params = {
       orderByFields: "ADDDATE desc",
       f: "json"
     }
 
-    const since = new Date()
-    since.setDate(since.getDate() - 7)
+    if (!since) {
+      since = new Date()
+      since.setDate(since.getDate() - 7)
+    }
 
     const ids = await this.getIds(Object.assign({
       where: `ADDDATE > date '${since.toISOString().split("T")[0]}'`

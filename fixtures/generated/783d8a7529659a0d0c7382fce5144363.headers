@@ -2,18 +2,18 @@
   "statusCode": 200,
   "headers": {
     "cache-control": "private, must-revalidate, max-age=0",
-    "content-length": "2092",
+    "content-length": "4943",
     "content-type": "text/plain;charset=utf-8",
     "content-encoding": "gzip",
-    "etag": "ac33af46",
+    "etag": "1fb8a8f7",
     "server": "Microsoft-IIS/8.5",
     "x-aspnet-version": "4.0.30319",
     "x-powered-by": "ASP.NET",
-    "date": "Tue, 10 Jul 2018 17:06:27 GMT",
+    "date": "Tue, 17 Jul 2018 19:58:44 GMT",
     "connection": "close"
   },
-  "url": "https://maps2.dcgis.dc.gov/dcgis/rest/services/DCGIS_DATA/ServiceRequests/MapServer/9/query?objectIds=526457%2C526458%2C526460%2C526465%2C526461%2C526466%2C526459%2C526464%2C526463%2C526467&outFields=*&orderByFields=ADDDATE+desc&f=json",
-  "time": 161,
+  "url": "https://maps2.dcgis.dc.gov/dcgis/rest/services/DCGIS_DATA/ServiceRequests/MapServer/9/query?returnIdsOnly=true&where=ADDDATE+%3E+date+%272018-07-16%27&orderByFields=ADDDATE+desc&f=json",
+  "time": 322,
   "request": {
     "method": "GET",
     "headers": {

@@ -33,7 +33,7 @@ describe("getServiceRequests", () => {
   test("it returns 10 service requests", () => {
     expect.hasAssertions()
 
-    return DC311.getServiceRequests().then((objs) => {
+    return DC311.getServiceRequests(new Date(1531771015504)).then((objs) => {
       expect(objs).toHaveLength(10)
     })
   })

@@ -2,7 +2,9 @@ const path = require("path")
 const ExtractCssPlugin = require("mini-css-extract-plugin")
 const AssetsManifest = require("webpack-assets-manifest")
 
+const isStaging = process.env.NODE_ENV === "staging"
 const isProduction = process.env.NODE_ENV === "production"
+const isDevelopment = !isStaging && !isProduction
 
 module.exports = {
   entry: {
@@ -10,7 +12,7 @@ module.exports = {
     client: "./app/assets/javascripts/client.js",
     styles: "./app/assets/stylesheets/styles.scss"
   },
-  mode: isProduction ? "production" : "development",
+  mode: !isDevelopment ? "production" : "development",
   module: {
     rules: [
       {
@@ -27,7 +29,7 @@ module.exports = {
           {
             loader: "file-loader",
             options: {
-              name: isProduction ? "[name].[hash].[ext]" : "[name].[ext]"
+              name: !isDevelopment ? "[name].[hash].[ext]" : "[name].[ext]"
             }
           },
           "image-webpack-loader"
@@ -37,13 +39,13 @@ module.exports = {
   },
   plugins: [
     new ExtractCssPlugin({
-      filename: isProduction ? "[name].[hash].css" : "[name].css"
+      filename: !isDevelopment ? "[name].[hash].css" : "[name].css"
     }),
     new AssetsManifest()
   ],
   output: {
     path: path.resolve("dist"),
     publicPath: isProduction ? "https://assets.dc311rn.com/" : "/assets/",
-    filename: isProduction ? "[name].[hash].js" : "[name].js"
+    filename: !isDevelopment ? "[name].[hash].js" : "[name].js"
   }
 }

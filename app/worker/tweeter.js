@@ -76,7 +76,9 @@ export default class Tweeter {
     let serviceRequests
 
     try {
-      serviceRequests = await Promise.all(tweet.serviceRequestNumbers.map(DC311.getServiceRequest))
+      serviceRequests = await Promise.all(tweet.serviceRequestNumbers.map((sr) => {
+        return DC311.getServiceRequest(sr)
+      }))
     }
     catch (err) {
       this.logger.warn({ err, tweet }, "Could not fetch service requests from 311 for tweet.")

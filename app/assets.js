@@ -33,16 +33,10 @@ else {
     css: `${path}/${manifest["styles.css"]}`
   }
 
-  const middleware = express.static("dist/", {
+  app.use("/assets", express.static("dist/", {
     maxAge: 31536000000,
     immutable: true
-  })
-
-  app.use("/assets", middleware)
-
-  // Transition from cloudfront-* path to assets to simplify staging setup.
-  // Once cloudfront configuration has fully propogated, this path can be removed.
-  app.use("/cloudfront-asset-requests", middleware)
+  }))
 }
 
 module.exports = app

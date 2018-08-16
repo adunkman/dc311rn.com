@@ -1,4 +1,5 @@
 import ServiceRequest from "../models/serviceRequest"
+import stats from "./stats"
 import fetch from "node-fetch"
 import url from "url"
 
@@ -33,7 +34,10 @@ export default class DC311 {
       f: "json"
     })
 
-    const { features } = await this.getJson(`${endpoint}?${params}`)
+    const { features } = await stats.time(
+      "api.dc311.getServiceRequest.responsetime",
+      async () => this.getJson(`${endpoint}?${params}`)
+    )
 
     if (features.length === 0) {
       throw new ServiceRequestNotFoundError("No service request was found with that request number.")
@@ -66,7 +70,10 @@ export default class DC311 {
       outFields: "*"
     }, params))
 
-    const { features } = await this.getJson(`${endpoint}?${qs}`)
+    const { features } = await stats.time(
+      "api.dc311.getServiceRequests.responsetime",
+      async () => this.getJson(`${endpoint}?${qs}`)
+    )
 
     return features.map((f) => new ServiceRequest(f.attributes))
   }
@@ -76,7 +83,10 @@ export default class DC311 {
       returnIdsOnly: true
     }, options))
 
-    const { objectIds } = await this.getJson(`${endpoint}?${params}`)
+    const { objectIds } = await stats.time(
+      "api.dc311.getIds.responsetime",
+      async () => this.getJson(`${endpoint}?${params}`)
+    )
 
     return objectIds.slice(0, 10)
   }

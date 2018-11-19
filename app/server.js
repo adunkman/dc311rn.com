@@ -5,6 +5,7 @@ import layouts from "express-ejs-layouts"
 
 import routes from "./routes"
 import assets from "./assets"
+import analytics from "./analytics"
 import Tweeter from "./worker/tweeter"
 
 const isProduction = process.env.NODE_ENV === "production"
@@ -33,6 +34,7 @@ app.use(helmet.contentSecurityPolicy({
 }))
 
 app.use(assets)
+app.use(analytics)
 
 app.use(helmet.noCache())
 

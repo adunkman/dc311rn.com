@@ -57,6 +57,7 @@
     "humanize-duration": "^3.15.3",
     "node-fetch": "^2.3.0",
     "strict-uri-encode": "^2.0.0",
-    "timezone": "^1.0.20"
+    "timezone": "^1.0.20",
+    "universal-analytics": "^0.4.20"
   }
 }

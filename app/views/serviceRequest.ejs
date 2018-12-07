@@ -38,6 +38,15 @@
     </div>
   </div>
 
+  <% if (request.hasEstimate && !request.isClosed) { %>
+    <div class="section with-icon">
+      <div class="icon">🔮</div>
+      <div>
+        Estimated to take <%= request.estimate %>.
+      </div>
+    </div>
+  <% } %>
+
   <div class="section request-type with-icon">
     <div class="icon">🧐</div>
     <div>

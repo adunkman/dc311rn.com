@@ -53,3 +53,13 @@ describe("getServiceRequests", () => {
     })
   })
 })
+
+describe("getEndpoint", () => {
+  test("it contacts map server 9 for service requests in 2018", () => {
+    expect(DC311.getEndpoint("18")).toMatch(/.*9$/)
+  })
+
+  test("it contacts map server 10 for service requests in 2019", () => {
+    expect(DC311.getEndpoint("19")).toMatch(/.*10$/)
+  })
+})

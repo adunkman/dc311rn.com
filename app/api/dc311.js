@@ -5,7 +5,7 @@ import url from "url"
 
 const URLSearchParams = url.URLSearchParams
 
-const endpoint = "https://maps2.dcgis.dc.gov/dcgis/rest/services/DCGIS_DATA/ServiceRequests/MapServer/9/query"
+const server = "https://maps2.dcgis.dc.gov/dcgis/rest/services/DCGIS_DATA/ServiceRequests/MapServer"
 
 class ServiceRequestNotFoundError extends Error {
   constructor(...args) {
@@ -34,9 +34,11 @@ export default class DC311 {
       f: "json"
     })
 
+    const endpoint = this.getEndpoint(number.split('-')[0])
+
     const { features } = await stats.time(
       "api.dc311.getServiceRequest.responsetime",
-      async () => this.getJson(`${endpoint}?${params}`)
+      async () => this.getJson(`${endpoint}/query?${params}`)
     )
 
     if (features.length === 0) {
@@ -61,9 +63,11 @@ export default class DC311 {
       since.setDate(since.getDate() - 7)
     }
 
+    const endpoint = this.getEndpoint(`${since.getFullYear()}`.substr(-2))
+
     const ids = await this.getIds(Object.assign({
       where: `ADDDATE > date '${since.toISOString().split("T")[0]}'`
-    }, params))
+    }, params), endpoint)
 
     const qs = new URLSearchParams(Object.assign({
       objectIds: ids.join(),
@@ -72,20 +76,20 @@ export default class DC311 {
 
     const { features } = await stats.time(
       "api.dc311.getServiceRequests.responsetime",
-      async () => this.getJson(`${endpoint}?${qs}`)
+      async () => this.getJson(`${endpoint}/query?${qs}`)
     )
 
     return features.map((f) => new ServiceRequest(f.attributes))
   }
 
-  static async getIds(options) {
+  static async getIds(options, endpoint) {
     const params = new URLSearchParams(Object.assign({
       returnIdsOnly: true
     }, options))
 
     const { objectIds } = await stats.time(
       "api.dc311.getIds.responsetime",
-      async () => this.getJson(`${endpoint}?${params}`)
+      async () => this.getJson(`${endpoint}/query?${params}`)
     )
 
     return objectIds.slice(0, 10)
@@ -103,6 +107,16 @@ export default class DC311 {
     }
 
     return body
+  }
+
+  /**
+   * In 2009, the first OpenData database was published (index 0). Since then.
+   * each year, the endpoint index increments by 1.
+   */
+  static getEndpoint(twoDigitYear) {
+    const year = Number(`20${twoDigitYear}`)
+    const database = year - 2009
+    return `${server}/${database}`
   }
 }
 

@@ -6,7 +6,6 @@ import layouts from "express-ejs-layouts"
 import routes from "./routes"
 import assets from "./assets"
 import analytics from "./analytics"
-import Tweeter from "./worker/tweeter"
 
 const isProduction = process.env.NODE_ENV === "production"
 const app = express()
@@ -42,5 +41,3 @@ app.use(layouts)
 app.use(routes)
 
 app.listen(process.env.PORT || 8080)
-
-new Tweeter()

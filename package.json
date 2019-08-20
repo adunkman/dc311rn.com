@@ -39,7 +39,7 @@
     "jest": "^23.6.0",
     "mini-css-extract-plugin": "^0.5.0",
     "node-sass": "^4.10.0",
-    "sass-loader": "^7.1.0",
+    "sass-loader": "^7.3.0",
     "sepia": "^2.0.2",
     "webpack": "^4.26.0",
     "webpack-assets-manifest": "^3.1.1",
